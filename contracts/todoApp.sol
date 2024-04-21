@@ -47,6 +47,22 @@ contract TodoApp {
 
     function deleteTask(uint _id) public {
         // to delete the _idth task from the array
+
+        require(_id < tasks.length, "Task ID does not exist");
+
+        // Shift tasks to the left, overwriting the task at the specified index
+        for (uint256 i = _id; i < tasks.length - 1; i++) {
+            tasks[i] = tasks[i + 1];
+        }
+
+        // Remove the last element
+        tasks.pop();
+    }
+
+    function retreiveTasks() public view returns (Task[] memory) {
+        // To retrive the whole tasks array
+
+        return tasks;
     }
 
 }
